@@ -19,20 +19,20 @@ class Solution(object):
 
         # time: O(n)
         # space: O(1)
-        result = ""
+        result = []
 
         point1 = 0
         point2 = 0
 
         for i in range(len(word1) + len(word2)):
             if point1 < len(word1):
-                result += word1[point1:point1 + 1]
+                result.append(word1[point1:point1 + 1])
                 point1 += 1
             if point2 < len(word2):
-                result += word2[point2:point2+1]
+                result.append(word2[point2:point2+1])
                 point2 += 1
 
-        return result
+        return ''.join(result)
             
 
         
