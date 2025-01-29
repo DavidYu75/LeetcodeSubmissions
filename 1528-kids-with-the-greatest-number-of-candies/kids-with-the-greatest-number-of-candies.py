@@ -23,12 +23,13 @@ class Solution(object):
         
         # time: O(n)
         # space: O(n)
-        maxCandies = 0
+        # maxCandies = 0
         result = []
+        maxCandies = max(candies)
 
-        for candy in candies:
-            if candy > maxCandies:
-                maxCandies = candy
+        # for candy in candies:
+        #     if candy > maxCandies:
+        #         maxCandies = candy
         
         for i in range(len(candies)):
             if candies[i] + extraCandies >= maxCandies:
