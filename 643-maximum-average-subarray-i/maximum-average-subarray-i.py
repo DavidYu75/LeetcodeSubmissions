@@ -1,5 +1,7 @@
 class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
+        # time: O(n)
+        # space: O(1)
         curr_total = sum(nums[:k])
         max_avg = curr_total / k
 
