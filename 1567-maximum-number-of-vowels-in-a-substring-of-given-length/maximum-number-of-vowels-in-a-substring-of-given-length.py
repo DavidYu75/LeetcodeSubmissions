@@ -2,7 +2,7 @@ class Solution:
     # time: O(n)
     # space: O(n)
     def maxVowels(self, s: str, k: int) -> int:
-        vowels = ['a', 'e', 'i', 'o', 'u']
+        vowels = {'a', 'e', 'i', 'o', 'u'}
         char_window = s[:k]
         max_vowel_count = 0
 
