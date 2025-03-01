@@ -37,12 +37,12 @@ class Solution:
         while first < last:
             if char_s[first] in vowels and char_s[last] not in vowels:
                 last -= 1
-            elif char_s[first] not in vowels and char_s[last] in vowels:
+            if char_s[first] not in vowels and char_s[last] in vowels:
                 first += 1
-            elif char_s[first] not in vowels and char_s[last] not in vowels:
+            if char_s[first] not in vowels and char_s[last] not in vowels:
                 first += 1
                 last -= 1
-            else:
+            if char_s[first] in vowels and char_s[last] in vowels:
                 char_s[first], char_s[last] = char_s[last], char_s[first]
                 first += 1
                 last -= 1
