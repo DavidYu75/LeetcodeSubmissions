@@ -35,17 +35,28 @@ class Solution:
         #     first += 1
 
         while first < last:
-            if char_s[first] in vowels and char_s[last] not in vowels:
-                last -= 1
-            if char_s[first] not in vowels and char_s[last] in vowels:
+            # if char_s[first] in vowels and char_s[last] not in vowels:
+            #     last -= 1
+            # if char_s[first] not in vowels and char_s[last] in vowels:
+            #     first += 1
+            # if char_s[first] not in vowels and char_s[last] not in vowels:
+            #     first += 1
+            #     last -= 1
+            # if char_s[first] in vowels and char_s[last] in vowels:
+            #     char_s[first], char_s[last] = char_s[last], char_s[first]
+            #     first += 1
+            #     last -= 1
+
+            while first < last and char_s[first] not in vowels:
                 first += 1
-            if char_s[first] not in vowels and char_s[last] not in vowels:
-                first += 1
+
+            while first < last and char_s[last] not in vowels:
                 last -= 1
-            if char_s[first] in vowels and char_s[last] in vowels:
-                char_s[first], char_s[last] = char_s[last], char_s[first]
-                first += 1
-                last -= 1
+
+            char_s[first], char_s[last] = char_s[last], char_s[first]
+
+            first += 1
+            last -= 1
 
         
         return ''.join(char_s)
