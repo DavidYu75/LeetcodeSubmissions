@@ -3,18 +3,8 @@ class Solution:
         anagram_pairs = {}
 
         for word in strs:
-            sorted_word = list(word)
-            sorted_word.sort()
-            sorted_word = "".join(sorted_word)
+            sorted_word = ''.join(sorted(word))
 
-            if sorted_word in anagram_pairs:
-                anagram_pairs[sorted_word].append(word)
-            else:
-                anagram_pairs[sorted_word] = [word]
+            anagram_pairs.setdefault(sorted_word, []).append(word)
         
-        pairs = []
-
-        for anagram in anagram_pairs:
-            pairs.append(anagram_pairs[anagram])
-
-        return pairs
+        return list(anagram_pairs.values())
