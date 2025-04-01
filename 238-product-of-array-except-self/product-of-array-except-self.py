@@ -14,8 +14,8 @@ class Solution:
         
         # return result
 
-        left_product = [1] * len(nums)
-        right_product = [1] * len(nums)
+        # left_product = [1] * len(nums)
+        # right_product = [1] * len(nums)
 
         # left_product = 1, 1, 2, 6
         # right_product = 24, 12, 4, 1
@@ -24,22 +24,33 @@ class Solution:
         # left
         # -1, 1, 0, -3, 3
         # 1, -1, -1, 0, 0
-        left_product[0] = 1
-        for i in range(1, len(nums)):
-            left_product[i] = left_product[i-1] * nums[i-1]
+        # left_product[0] = 1
+        # for i in range(1, len(nums)):
+        #     left_product[i] = left_product[i-1] * nums[i-1]
 
-        right_product[len(nums) - 1] = 1
-        # print(right_product)
+        # right_product[len(nums) - 1] = 1
         # 4, 3, 2, 1
         # 1, 4, 12, 24
         # 1, 2, 3, 4
         # 1, 1, 1, 1
         # 24, 12, 4, 1
-        for i in range(len(nums) - 2, -1, -1):
-            right_product[i] = right_product[i+1] * nums[i+1]
+        # for i in range(len(nums) - 2, -1, -1):
+        #     right_product[i] = right_product[i+1] * nums[i+1]
 
-        result = []
-        for i in range(len(left_product)):
-            result.append(left_product[i] * right_product[i])
+        # result = []
+        # for i in range(len(left_product)):
+        #     result.append(left_product[i] * right_product[i])
+
+        # return result
+
+        result = [1] * len(nums)
+
+        for i in range(1, len(nums)):
+            result[i] = result[i-1] * nums[i-1]
+
+        right = 1
+        for i in range(len(nums) - 1, -1, -1):
+            result[i] *= right
+            right *= nums[i]
 
         return result
