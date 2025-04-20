@@ -1,9 +1,8 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-        s_chars = list(s)
 
-        for char in s_chars:
+        for char in s:
             if char == '(':
                 stack.append(')')
             elif char == '[':
