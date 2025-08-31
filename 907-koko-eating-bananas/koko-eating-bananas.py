@@ -10,7 +10,7 @@ class Solution:
 
             hours_taken = 0
             for bananas in piles:
-                hours_taken += math.ceil(bananas / mid)
+                hours_taken += math.ceil(float(bananas) / mid)
             
             if hours_taken > h:
                 first = mid + 1
