@@ -1,33 +1,30 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        course_prereq = { course:[] for course in range(numCourses) }
+        # build an adjacency list and in degree counts
+        # prereq -> list of courses dependent on it
+        # ex: 0 -> [1]
+        graph = defaultdict(list)
+        in_degree = [0] * numCourses
 
         for course, prereq in prerequisites:
-            course_prereq[course].append(prereq)
+            graph[prereq].append(course)
+            in_degree[course] += 1
 
-        visited, cycle = set(), set()
-        output = []
+        # initialize a queue where we first enter in the courses that have no prereqs
+        queue = deque([i for i in range(numCourses) if in_degree[i] == 0])
+        order = []
 
-        def dfs(course):
-            if course in cycle:
-                return False
-            if course in visited:
-                return True
-            
-            cycle.add(course)
-
-            for pre in course_prereq[course]:
-                if dfs(pre) == False:
-                    return False
-            
-            output.append(course)
-            cycle.remove(course)
-            visited.add(course)
-
-            return True
+        # kahn's algorithm
+        while queue:
+            node = queue.popleft()
+            order.append(node)
+            for next in graph[node]:
+                in_degree[next] -= 1
+                if in_degree[next] == 0:
+                    queue.append(next)
         
-        for course in range(numCourses):
-            if dfs(course) == False:
-                return []
-        
-        return output
+        return order if len(order) == numCourses else []
+
+        # test cases
+    
+
