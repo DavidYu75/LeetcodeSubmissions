@@ -1,31 +1,29 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        course_prereq = { c:[] for c in range(numCourses)}
+        adj_list = defaultdict(list)
 
         for course, prereq in prerequisites:
-            course_prereq[course].append(prereq)
-
-        visited, cycle = set(), set()
+            adj_list[course].append(prereq)
+        
+        visited = set()
 
         def dfs(course):
-            if course in cycle:
-                return False
             if course in visited:
+                return False
+            if adj_list[course] == []:
                 return True
             
-            cycle.add(course)
-
-            for pre in course_prereq[course]:
-                if dfs(pre) == False:
-                    return False
-                
-            cycle.remove(course)
             visited.add(course)
-        
+            for prereq in adj_list[course]:
+                if not dfs(prereq):
+                    return False
+            
+            visited.remove(course)
+            adj_list[course] = []
+
             return True
         
         for course in range(numCourses):
-            if dfs(course) == False:
+            if not dfs(course):
                 return False
-        
         return True
