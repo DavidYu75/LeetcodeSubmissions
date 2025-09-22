@@ -1,22 +1,23 @@
 class Solution:
-    # 1,8,6,2,5,4,8,3,7
-    # 1, 7  # width = 8 area = 8
-    # 8, 7  # width = 7 area = 49
-    # 8, 3
     def maxArea(self, height: List[int]) -> int:
-        total_max = 0
-        first, last = 0, len(height) - 1
+        # two pointers: 1 set to the beginning of the array, the other set to the end of the array
+        # for height: we want to take the min height of the two pointers
+        # move pointer based on the smaller height of the two pointers
 
-        while first < last:
-            curr_max = 0
-            if height[first] > height[last]:
-                curr_max = (last - first) * height[last]
-                total_max = max(curr_max, total_max)
-                last -= 1
+        left, right = 0, len(height) - 1
+        max_vol = 0
+
+        while left < right:
+            container_width = right - left
+            container_height = min(height[left], height[right])
+
+            current_vol = container_width * container_height
+
+            max_vol = max(max_vol, current_vol)
+
+            if height[right] == container_height:
+                right -= 1
             else:
-                curr_max = (last - first) * height[first]
-                total_max = max(curr_max, total_max)
-                first += 1
+                left += 1
         
-        return total_max
-            
+        return max_vol
