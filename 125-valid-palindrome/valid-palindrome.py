@@ -1,21 +1,15 @@
-import re
-
 class Solution:
     def isPalindrome(self, s: str) -> bool:
+        removed_alpha = ''.join(c for c in s if c.isalnum())
+        removed_alpha = removed_alpha.lower()
 
-        def remove_alphanumeric(text):
-            return re.sub(r'[^a-zA-Z0-9]', '', text)
+        left, right = 0, len(removed_alpha) - 1
 
-        lowercase_s = s.lower()
-        lowercase_s = remove_alphanumeric(lowercase_s)
-
-        first = 0
-        last = len(lowercase_s)
-
-        while first < last:
-            if lowercase_s[first:first+1] != lowercase_s[last-1:last]:
+        while left < right:
+            if removed_alpha[left] != removed_alpha[right]:
                 return False
-            first += 1
-            last -= 1
-        
+
+            left += 1 
+            right -= 1
+
         return True
