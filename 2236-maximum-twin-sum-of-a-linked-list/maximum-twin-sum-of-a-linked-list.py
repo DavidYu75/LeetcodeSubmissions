@@ -15,22 +15,46 @@ class Solution:
         # go through the hasmap and calculate the twin values of each node
         # compare it with a max value
 
-        index_value = {}
-        i = 0
-        length = 0
-        curr = head
-        max_sum = float("-inf")
+        # index_value = {}
+        # i = 0
+        # length = 0
+        # curr = head
+        # max_sum = float("-inf")
+
+        # while curr:
+        #     index_value[i] = curr.val
+        #     curr = curr.next
+        #     i += 1
+        #     length += 1
+        
+        # for index in index_value:
+        #     twin_node = length - 1 - index
+
+        #     twin_sum = index_value[index] + index_value[twin_node]
+        #     max_sum = max(twin_sum, max_sum)
+        
+        # return max_sum
+
+        slow, fast = head, head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        prev, curr = None, slow
 
         while curr:
-            index_value[i] = curr.val
-            curr = curr.next
-            i += 1
-            length += 1
+            nxt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nxt
         
-        for index in index_value:
-            twin_node = length - 1 - index
-
-            twin_sum = index_value[index] + index_value[twin_node]
-            max_sum = max(twin_sum, max_sum)
+        result = 0
+        first, second = head, prev
+        while second:
+            result = max(first.val + second.val, result)
+            second = second.next
+            first = first.next
         
-        return max_sum
+        return result
+            
