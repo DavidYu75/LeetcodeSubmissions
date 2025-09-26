@@ -6,7 +6,7 @@ class Solution:
         # R = product of options count, L = length of each resulting string O(n * R * L)
         # space: O(R * L)
 
-        groups: List[List[str]] = []
+        groups = []
         i, n = 0, len(s)
 
         while i < n:
@@ -23,6 +23,8 @@ class Solution:
                 groups.append([s[i]])
                 i += 1
         
+        print(groups)
+
         result = []
         path = []
 
