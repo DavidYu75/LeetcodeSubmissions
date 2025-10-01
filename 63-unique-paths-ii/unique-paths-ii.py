@@ -2,6 +2,17 @@ class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
         # dfs
         ROWS, COLS = len(obstacleGrid), len(obstacleGrid[0])
+        dp = [0] * (COLS + 1)
+        dp[COLS - 1] = 1
+
+        for r in range(ROWS - 1, -1, -1):
+            for c in range(COLS - 1, -1, -1):
+                if obstacleGrid[r][c] == 1:
+                    dp[c] = 0
+                else:
+                    dp[c] += dp[c + 1]
+
+        return dp[0]
 
         # r, c
         # r + 1, c
@@ -17,22 +28,22 @@ class Solution:
         # cache = number of possible paths from that cell
         # cache = copy of our current grid but with all 0s, dynamically update each position in our grid with the possible paths from that position in our cache (this is to avoid duplicate calculations)
         # if our current r and c already in the cache, then we will just reference it instead of doing the same calculation
-        cache = [[0] * COLS for i in range(ROWS)]
+        # cache = [[0] * COLS for i in range(ROWS)]
         
-        def dfs(r, c, cache):
-            if r >= ROWS or c >= COLS or obstacleGrid[r][c] == 1:
-                return 0
-            if cache[r][c] > 0:
-                return cache[r][c]
-            if r == ROWS - 1 and c == COLS - 1:
-                return 1
+        # def dfs(r, c, cache):
+        #     if r >= ROWS or c >= COLS or obstacleGrid[r][c] == 1:
+        #         return 0
+        #     if cache[r][c] > 0:
+        #         return cache[r][c]
+        #     if r == ROWS - 1 and c == COLS - 1:
+        #         return 1
             
-            cache[r][c] = dfs(r + 1, c, cache) + dfs(r, c + 1, cache)
+        #     cache[r][c] = dfs(r + 1, c, cache) + dfs(r, c + 1, cache)
 
-            return cache[r][c]
+        #     return cache[r][c]
 
-        # removed the choice of going down or right (2 choices)
-        # going through every row and col in our grid
-        # time : O(m * n)
-        # space: O(m * n)
-        return dfs(0, 0, cache)
+        # # removed the choice of going down or right (2 choices)
+        # # going through every row and col in our grid
+        # # time : O(m * n)
+        # # space: O(m * n)
+        # return dfs(0, 0, cache)
