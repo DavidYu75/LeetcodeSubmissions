@@ -1,21 +1,16 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        result = []
-
-        curr_subset = []
-
-        def dfs(i):
-            if i >= len(nums):            
-                result.append(curr_subset.copy())
+        def backtrack(i, nums, result, curr_set):
+            if i >= len(nums):
+                result.append(curr_set.copy())
                 return
             
-            # decision to add i
-            curr_subset.append(nums[i])
-            dfs(i + 1)
+            curr_set.append(nums[i])
+            backtrack(i + 1, nums, result, curr_set)
+            curr_set.pop()
 
-            # decision not to add
-            curr_subset.pop()
-            dfs(i + 1)
-
-        dfs(0)
+            backtrack(i + 1, nums, result, curr_set)
+        
+        result, curr_set = [], []
+        backtrack(0, nums, result, curr_set)
         return result
