@@ -9,21 +9,19 @@ class Solution:
         # previous left child becomes the root
         # previous root becomes the right child
         # previous right child becomes the left child
-
-        current_node = root
-        previous_right_node = None
-        parent_node = None
+        
+        current_node, previous_parent, previous_right = root, None, None
 
         while current_node:
-            left_node = current_node.left
-            right_node = current_node.right
+            left_node, right_node = current_node.left, current_node.right
 
-            current_node.left = previous_right_node
-            current_node.right = parent_node
+            current_node.left = previous_right
+            current_node.right = previous_parent
 
-            previous_right_node = right_node
-            parent_node = current_node
+            previous_right = right_node
+            previous_parent = current_node
             current_node = left_node
 
-        return parent_node
+        
+        return previous_parent
         
