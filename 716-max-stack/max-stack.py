@@ -4,9 +4,9 @@ class MaxStack:
     
     def __init__(self):
         self.stack = []
+        self.removed = set()
         self.heap = []
         self.id = 0
-        self.removed = set()
 
     def push(self, x: int) -> None:
         heapq.heappush(self.heap, (-x, -self.id))
@@ -16,7 +16,7 @@ class MaxStack:
     def pop(self) -> int:
         while self.stack and self.stack[-1][1] in self.removed:
             self.stack.pop()
-        
+
         num, idx = self.stack.pop()
         self.removed.add(idx)
         return num
@@ -39,7 +39,6 @@ class MaxStack:
         
         num, idx = heapq.heappop(self.heap)
         self.removed.add(-idx)
-
         return -num
 
 
