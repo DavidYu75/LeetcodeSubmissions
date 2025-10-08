@@ -4,42 +4,43 @@ class MaxStack:
     
     def __init__(self):
         self.stack = []
-        self.removed = set()
         self.heap = []
+        self.remove = set()
         self.id = 0
 
     def push(self, x: int) -> None:
-        heapq.heappush(self.heap, (-x, -self.id))
         self.stack.append((x, self.id))
+        heapq.heappush(self.heap, (-x, -self.id))
+
         self.id += 1
 
     def pop(self) -> int:
-        while self.stack and self.stack[-1][1] in self.removed:
+        while self.stack and self.stack[-1][1] in self.remove:
             self.stack.pop()
-
-        num, idx = self.stack.pop()
-        self.removed.add(idx)
-        return num
+        
+        x, removed_id = self.stack.pop()
+        self.remove.add(removed_id)
+        return x
 
     def top(self) -> int:
-        while self.stack and self.stack[-1][1] in self.removed:
+        while self.stack and self.stack[-1][1] in self.remove:
             self.stack.pop()
-
+        
         return self.stack[-1][0]
 
     def peekMax(self) -> int:
-        while self.heap and -self.heap[0][1] in self.removed:
+        while self.heap and -self.heap[0][1] in self.remove:
             heapq.heappop(self.heap)
         
         return -self.heap[0][0]
 
     def popMax(self) -> int:
-        while self.heap and -self.heap[0][1] in self.removed:
+        while self.heap and -self.heap[0][1] in self.remove:
             heapq.heappop(self.heap)
         
-        num, idx = heapq.heappop(self.heap)
-        self.removed.add(-idx)
-        return -num
+        x, removed_id = heapq.heappop(self.heap)
+        self.remove.add(-removed_id)
+        return -x
 
 
 # Your MaxStack object will be instantiated and called as such:
