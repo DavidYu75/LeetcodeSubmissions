@@ -7,28 +7,23 @@
 class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
         if not root:
-            return None
-
-        def minValueNode(root):
-            curr = root
-
-            while curr and curr.left:
-                curr = curr.left
-
-            return curr
+            return root
         
-        if key > root.val:
-            root.right = self.deleteNode(root.right, key)
-        elif key < root.val:
+        if key < root.val:
             root.left = self.deleteNode(root.left, key)
+        elif key > root.val:
+            root.right = self.deleteNode(root.right, key)
         else:
             if not root.left:
                 return root.right
             elif not root.right:
                 return root.left
-            else:
-                min_node = minValueNode(root.right)
-                root.val = min_node.val
-                root.right = self.deleteNode(root.right, min_node.val)
+
+            curr = root.right
+            while curr.left:
+                curr = curr.left
+            
+            root.val = curr.val
+            root.right = self.deleteNode(root.right, curr.val)
         
         return root
