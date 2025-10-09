@@ -15,9 +15,9 @@ class Solution:
             left = dfs(root.left, layer)
             right = dfs(root.right, layer)
 
-            layer = max(right, left)
+            layer = max(left, right)
             result[layer].append(root.val)
-        
+
             return layer + 1
         
         dfs(root, 0)
