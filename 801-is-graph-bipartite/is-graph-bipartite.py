@@ -1,24 +1,24 @@
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
-        odd = [0] * len(graph)  # map node to even or odd: odd = 1, even = -1
+        color = [0] * len(graph)
 
         def bfs(i):
-            if odd[i]:
+            if color[i]:
                 return True
             
             queue = deque([i])
-            odd[i] = -1
+            color[i] = -1
 
             while queue:
                 node = queue.popleft()
 
-                for nei in graph[node]:
-                    if odd[nei] == odd[node]:
+                for neighbor in graph[node]:
+                    if color[neighbor] == color[node]:
                         return False
-                    elif not odd[nei]:
-                        queue.append(nei)
-                        odd[nei] = -1 * odd[node]
-                    
+                    elif not color[neighbor]:
+                        queue.append(neighbor)
+                        color[neighbor] = -1 * color[node]
+            
             return True
         
         for i in range(len(graph)):
