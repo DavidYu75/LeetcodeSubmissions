@@ -9,18 +9,24 @@ class Solution:
         currentA = headA
         currentB = headB
 
-        visited = set()
+        while currentA != currentB:
+            currentA = headB if currentA is None else currentA.next
+            currentB = headA if currentB is None else currentB.next
+        
+        return currentA
 
-        while currentA:
-            visited.add(currentA)
-            currentA = currentA.next
+        # visited = set()
+
+        # while currentA:
+        #     visited.add(currentA)
+        #     currentA = currentA.next
         
-        while currentB:
-            if currentB in visited:
-                return currentB
-            currentB = currentB.next
+        # while currentB:
+        #     if currentB in visited:
+        #         return currentB
+        #     currentB = currentB.next
         
-        return None
+        # return None
 
         # currentA = headA
         # currentB = headB
