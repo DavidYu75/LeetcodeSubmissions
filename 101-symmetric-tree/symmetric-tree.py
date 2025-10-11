@@ -11,31 +11,30 @@ class Solution:
         #         return True
         #     if root1 is None or root2 is None:
         #         return False
+        #     if root1.val != root2.val:
+        #         return False
             
         #     return root1.val == root2.val and dfs(root1.left, root2.right) and dfs(root1.right, root2.left)
-        
+
         # return dfs(root, root)
 
-        def bfs(root1, root2):
-            queue = deque()
+        queue = deque()
 
-            queue.append((root1, root2))
+        queue.append((root, root))
 
-            while queue:
-                for i in range(len(queue)):
-                    node1, node2 = queue.popleft()
+        while queue:
+            for i in range(len(queue)):
+                root1, root2 = queue.popleft()
 
-                    if node1 is None and node2 is None:
-                        continue
-                    if node1 is None or node2 is None:
-                        return False
-                    if node1.val != node2.val:
-                        return False
-                    
-                    queue.append((node1.left, node2.right))
-                    queue.append((node1.right, node2.left))
-            
-            return True
+                if root1 is None and root2 is None:
+                    continue
+                if root1 is None or root2 is None:
+                    return False
+                if root1.val != root2.val:
+                    return False
+                
+                queue.append((root1.left, root2.right))
+                queue.append((root1.right, root2.left))
         
-        return bfs(root, root)
+        return True
         
