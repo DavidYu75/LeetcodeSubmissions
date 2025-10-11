@@ -1,38 +1,38 @@
 class Solution:
     def sortTransformedArray(self, nums: List[int], a: int, b: int, c: int) -> List[int]:
-        def transform(num):
-            return (num * num * a) + (b * num) + c
-        
+        def transform(x):
+            return (a * x * x) + (b * x) + c
+
         left, right = 0, len(nums) - 1
-        answer = []
+        result = []
 
         if a < 0:
             while left <= right:
                 left_transformed, right_transformed = transform(nums[left]), transform(nums[right])
 
                 if left_transformed < right_transformed:
-                    answer.append(left_transformed)
+                    result.append(left_transformed)
                     left += 1
                 else:
-                    answer.append(right_transformed)
+                    result.append(right_transformed)
                     right -= 1
         else:
             while left <= right:
                 left_transformed, right_transformed = transform(nums[left]), transform(nums[right])
 
                 if left_transformed > right_transformed:
-                    answer.append(left_transformed)
+                    result.append(left_transformed)
                     left += 1
                 else:
-                    answer.append(right_transformed)
+                    result.append(right_transformed)
                     right -= 1
-            answer.reverse()
+            
+            result.reverse()
         
-        return answer
+        return result
+
         
         # for i in range(len(nums)):
-        #     nums[i] = apply_function(nums[i])
-
-        # print(nums)
+        #     nums[i] = transform(nums[i])
         
         # return sorted(nums)
