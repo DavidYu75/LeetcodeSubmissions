@@ -4,30 +4,29 @@ class Solution:
 
         while left < right:
             middle = (left + right) // 2
-            
+
             if nums[middle] > nums[right]:
                 left = middle + 1
             else:
                 right = middle
         
-        pivot = left
+        partition = left
 
         def binary_search(left, right):
             while left <= right:
                 middle = (left + right) // 2
 
-                if nums[middle] > target:
-                    right = middle - 1
-                elif nums[middle] < target:
+                if nums[middle] < target:
                     left = middle + 1
+                elif nums[middle] > target:
+                    right = middle - 1
                 else:
                     return middle
-            
+        
             return -1
-                
-        result = binary_search(0, pivot)
+        
+        result = binary_search(0, partition)
         if result != -1:
             return result
-
-        return binary_search(pivot, len(nums) - 1)    
         
+        return binary_search(partition, len(nums) - 1)
