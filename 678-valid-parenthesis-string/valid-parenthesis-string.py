@@ -13,15 +13,17 @@ class Solution:
                 return memo[(i, open_count)]
 
             if s[i] == '(':
-                memo[(i, open_count)] = dfs(i+1, open_count+1)
+                result = dfs(i+1, open_count+1)
             elif s[i] == ')':
-                memo[(i, open_count)] = dfs(i+1, open_count-1)
+                result = dfs(i+1, open_count-1)
             else:
-                memo[(i, open_count)] = (
+                result = (
                     dfs(i+1, open_count) or
                     dfs(i+1, open_count+1) or
                     dfs(i+1, open_count-1)
                 )
+
+            memo[(i, open_count)] = result
             
             return memo[(i, open_count)]
             
