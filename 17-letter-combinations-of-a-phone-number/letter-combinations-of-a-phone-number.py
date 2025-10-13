@@ -1,6 +1,12 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        phone_letters = {
+        # hashmap, where a key is a digit, the value is the possible letters of that digit
+        # backtrack
+        
+        # O(4^n * n)
+        # O(n)
+
+        digit_letters = {
             "2": "abc",
             "3": "def",
             "4": "ghi",
@@ -18,9 +24,9 @@ class Solution:
                 result.append(curr_comb)
                 return
             
-            for c in phone_letters[digits[i]]:
-                backtrack(i+1, curr_comb + c)
-            
+            for letter in digit_letters[digits[i]]:
+                backtrack(i+1, curr_comb + letter)
+        
         if digits:
             backtrack(0, "")
         
