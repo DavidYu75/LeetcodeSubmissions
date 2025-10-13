@@ -6,9 +6,10 @@ class Solution:
             adj_list[dislike[0]].append(dislike[1])
             adj_list[dislike[1]].append(dislike[0])
         
-        def bfs(root):
-            queue = deque([root])
-            color[root] = 0
+        def bfs(i):
+            queue = deque([i])
+            color[i] = 0
+
             while queue:
                 node = queue.popleft()
 
