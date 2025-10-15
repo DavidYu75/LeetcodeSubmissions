@@ -15,8 +15,7 @@ class Solution:
             if (i,first_house) in memo:
                 return memo[(i,first_house)]
             
-            result = max(dfs(i+1, first_house), nums[i] + dfs(i+2, first_house or i == 0))
-            memo[(i,first_house)] = result
+            memo[(i,first_house)] = max(dfs(i+1, first_house), nums[i] + dfs(i+2, first_house or i == 0))
 
             return memo[(i,first_house)]
         
