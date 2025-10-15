@@ -32,12 +32,12 @@ class Solution:
         # O(logn), space: O(1)
         result = [-1, -1]
         
+        left, right = 0, len(nums) - 1
 
         # left_bias: True then find left most, False then find the right most
-        def binary_search(nums, target, left_bias):
-            left, right = 0, len(nums) - 1
-            i = -1
-
+        def binary_search(left, right, left_bias):
+            i = - 1
+            
             while left <= right:
                 middle = (left + right) // 2
 
@@ -51,10 +51,10 @@ class Solution:
                         right = middle - 1
                     else:
                         left = middle + 1
-                
+            
             return i
         
-        result[0] = binary_search(nums, target, True)
-        result[1] = binary_search(nums, target, False)
+        result[0] = binary_search(left, right, True)
+        result[1] = binary_search(left, right, False)
 
         return result
