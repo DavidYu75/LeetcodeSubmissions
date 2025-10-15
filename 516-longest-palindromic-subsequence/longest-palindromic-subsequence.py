@@ -1,7 +1,7 @@
 class Solution:
     def longestPalindromeSubseq(self, s: str) -> int:
         return self.longest_common_subsequence(s, s[::-1])
-        
+
     def longest_common_subsequence(self, s1, s2):
         N, M = len(s1), len(s2)
         dp = [[0] * (M + 1) for _ in range(N + 1)]
@@ -14,3 +14,4 @@ class Solution:
                     dp[i+1][j+1] = max(dp[i+1][j], dp[i][j+1])
         
         return dp[N][M]
+    
