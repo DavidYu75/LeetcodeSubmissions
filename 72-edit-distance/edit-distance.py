@@ -1,5 +1,7 @@
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
+        # time: O(n * m)
+        # space: O(n * m)
         memo = {}
 
         def dfs(i, j):
