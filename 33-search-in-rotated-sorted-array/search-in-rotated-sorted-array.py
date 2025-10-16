@@ -9,10 +9,10 @@ class Solution:
                 left = middle + 1
             else:
                 right = middle
-        
+            
         partition = left
 
-        def binary_search(left, right):
+        def binary_search(left, right, target):
             while left <= right:
                 middle = (left + right) // 2
 
@@ -22,11 +22,12 @@ class Solution:
                     right = middle - 1
                 else:
                     return middle
-        
+            
             return -1
         
-        result = binary_search(0, partition)
-        if result != -1:
-            return result
+        first_half = binary_search(0, partition, target)
+
+        if first_half != -1:
+            return first_half
         
-        return binary_search(partition, len(nums) - 1)
+        return binary_search(partition, len(nums) - 1, target)
