@@ -29,3 +29,4 @@ class Solution:
         tail.next = head
 
         return new_head
+    
