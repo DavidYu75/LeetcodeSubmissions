@@ -1,5 +1,14 @@
 class Solution:
     def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        # for letter in letters:
+        #     if letter > target:
+        #         return letter
+        
+        # return letters[0]
+        
+        # time: O(n)
+        # space: O(1)
+
         left, right = 0, len(letters) - 1
 
         while left <= right:
@@ -10,7 +19,7 @@ class Solution:
             else:
                 right = middle - 1
         
-        if len(letters) == left:
+        if left == len(letters):
             return letters[0]
         else:
             return letters[left]
