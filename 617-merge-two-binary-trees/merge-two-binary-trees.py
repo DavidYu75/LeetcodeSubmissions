@@ -33,4 +33,4 @@ class Solution:
         return root1
 
         # Time: O(n)
-        # Space: O(1)
+        # Space: O(n)
