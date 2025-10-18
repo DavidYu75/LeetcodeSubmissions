@@ -27,6 +27,9 @@ class Solution:
                 for i in range(len(queue)):
                     node1, node2 = queue.popleft()
 
+                    if not node1 and not node2:
+                        continue 
+
                     if not node1 or not node2:
                         return False
 
