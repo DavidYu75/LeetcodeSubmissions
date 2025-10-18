@@ -6,42 +6,31 @@
 #         self.right = right
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        # def dfs(root1, root2):
-        #     if not root1 and not root2:
-        #         return True
+        # dfs(root1, root2)
+        # base case: 
+        # if not root1 and not root2: return True
+        # if not root1 or not root2: return False
+        # if root1.val != root2.val: return False
+
+        # root1.val == root2.val
+        # dfs(root1.left, root2.right) and dfs(root1.right, root2.left)
+        # root1 == root2
+        # symmetric = root1.left == root2.right
+        # root1.right == root2.left
+
+        def dfs(root1, root2):
+            if not root1 and not root2:
+                return True
             
-        #     if not root1 or not root2:
-        #         return False
+            if not root1 or not root2:
+                return False
             
-        #     if root1.val != root2.val:
-        #         return False
+            if root1.val != root2.val:
+                return False
             
-        #     return dfs(root1.left, root2.right) and dfs(root1.right, root2.left)
+            return root1.val == root2.val and dfs(root1.left, root2.right) and dfs(root1.right, root2.left)
         
-        # return dfs(root, root)
+        return dfs(root, root)
 
-        def bfs(root1, root2):
-            queue = deque([(root1, root2)])
-
-            while queue:
-                for i in range(len(queue)):
-                    node1, node2 = queue.popleft()
-
-                    if not node1 and not node2:
-                        continue 
-
-                    if not node1 or not node2:
-                        return False
-
-                    if node1.val != node2.val:
-                        return False
-                    
-                    queue.append((node1.left, node2.right))
-                    queue.append((node1.right, node2.left))
-            
-            return True
-        
-        return bfs(root, root)
-
-
-        
+        # time: O(n)
+        # space: O(n)
