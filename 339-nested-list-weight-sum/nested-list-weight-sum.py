@@ -43,13 +43,28 @@
 
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
+        # [1, [2, 2], [[3], 2], 1]
+        # 1*1 + 2*2 + 2*2 + 3*3 + 2*2 + 1*1 = 
+        # 1 + 4 + 4 + 9 + 4 + 1 = 23
+
+        # [[1, 1], 2, [1, 1]]
+        #   2, 2 , 1,  2, 2
+
+        # [[[1]]]
+
+        # dfs that traverses through the nested list
+        # we keep going deeper until we find the integer
+        # once we find that integer, we will get the value then multiply it by its depth
+        # dfs(nested_list, depth)
+        # base case: if the nested_list is an integer, we know to stop get the current depth * the integer and add it to the result
+        # dfs(new_nested_list, depth + 1)
+
         def dfs(nested_list, depth):
             result = 0
 
             for nested in nested_list:
                 if nested.isInteger():
                     result += nested.getInteger() * depth
-                
                 else:
                     result += dfs(nested.getList(), depth + 1)
             
