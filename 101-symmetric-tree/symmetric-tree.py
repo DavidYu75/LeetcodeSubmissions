@@ -6,19 +6,19 @@
 #         self.right = right
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        def dfs(root1, root2):
-            if not root1 and not root2:
-                return True
+        # def dfs(root1, root2):
+        #     if not root1 and not root2:
+        #         return True
             
-            if not root1 or not root2:
-                return False
+        #     if not root1 or not root2:
+        #         return False
             
-            if root1.val != root2.val:
-                return False
+        #     if root1.val != root2.val:
+        #         return False
             
-            return dfs(root1.left, root2.right) and dfs(root1.right, root2.left)
+        #     return dfs(root1.left, root2.right) and dfs(root1.right, root2.left)
         
-        return dfs(root, root)
+        # return dfs(root, root)
 
         def bfs(root1, root2):
             queue = deque([(root1, root2)])
