@@ -19,4 +19,26 @@ class Solution:
             return dfs(root1.left, root2.right) and dfs(root1.right, root2.left)
         
         return dfs(root, root)
+
+        def bfs(root1, root2):
+            queue = deque([(root1, root2)])
+
+            while queue:
+                for i in range(len(queue)):
+                    node1, node2 = queue.popleft()
+
+                    if not node1 or not node2:
+                        return False
+
+                    if node1.val != node2.val:
+                        return False
+                    
+                    queue.append((node1.left, node2.right))
+                    queue.append((node1.right, node2.left))
+            
+            return True
+        
+        return bfs(root, root)
+
+
         
