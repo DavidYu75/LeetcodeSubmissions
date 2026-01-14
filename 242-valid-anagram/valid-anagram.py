@@ -4,6 +4,9 @@ class Solution:
         # {'a': 2, 'n': 1, 'g': 1, 'r': 1, 'm': 1}
         # 
 
+        if len(s) != len(t):
+            return False
+
         s_map = {}
         for char in s:
             s_map[char] = s_map.get(char, 0) + 1
