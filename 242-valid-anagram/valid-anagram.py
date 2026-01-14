@@ -1,28 +1,18 @@
-from collections import Counter
-
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        return Counter(s) == Counter(t)
-        # if len(s) != len(t):
-        #     return False
+        # anagram
+        # {'a': 2, 'n': 1, 'g': 1, 'r': 1, 'm': 1}
+        # 
 
-        # char_count = {}
-
-        # for char in s:
-        #     char_count[char] = char_count.get(char, 0) + 1
-
-        # for char in t:
-        #     if char not in char_count or char_count[char] == 0:
-        #         return False
-            
-        #     char_count[char] -= 1
-
-        # return True
+        s_map = {}
+        for char in s:
+            s_map[char] = s_map.get(char, 0) + 1
         
-        # s_chars = list(s)
-        # t_chars = list(t)
+        t_map = {}
+        for char in t:
+            t_map[char] = t_map.get(char, 0) + 1
+        
+        return s_map == t_map
 
-        # s_chars.sort()
-        # t_chars.sort()
-
-        # return s_chars == t_chars
+        # time: O(n)
+        # space: O(n)
